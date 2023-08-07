@@ -27,6 +27,16 @@ namespace CustomListTestbyJaron
             //Assert
             Assert.AreEqual(1, mylist.Items);
         }
-
+        public void removemethod_countdecrement_removeanitemnot_customlist()
+        {
+            //arrange
+            CustomList<int> mylist = new CustomList<int>();
+            //Act
+            mylist.Remove(item);
+            //Assert
+            Assert.AreEqual(4, mylist.Items);
+        }
+        public void removemethod_itemshiftsbackwards_filltheindexwithremoveditem()
+            //arrange
     }
 }
