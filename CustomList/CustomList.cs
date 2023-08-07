@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,63 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable 
     {
         //Member Variables (HAS A)
         private T[] items;
         private int capacity;
         private int count;
 
+        public int Count { get { return count; } }
+        public int Capacity { get { return capacity; } }
+
+        public T[] Items { get { return items; } set { items = value; } }
+
         //Constructor
         public CustomList()
+        
         {
-            //capacity = 
-            //count =
-            //items = 
+            capacity = 4;
+            count = 0;
+            items = new T[capacity];
+        }
+        
+        
+        public T this[int index]
+        {
+
+            get
+            {
+                if(index < 0 || index >= count)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else
+                {
+                    return items[index];
+                }
+                
+            }
+            set
+            {
+                if (index < 0 || index >= count)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+               else
+                {
+                    items[index] = value;
+                }
+                
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
         }
 
         //Member Methods (CAN DO)
@@ -41,6 +86,11 @@ namespace CustomList
         {
             //returns a single string that contains all items from array
             return "";
+        }
+
+        public void Add(string[] items)
+        {
+            throw new NotImplementedException();
         }
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
