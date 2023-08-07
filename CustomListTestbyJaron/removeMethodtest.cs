@@ -20,8 +20,13 @@ namespace CustomListTestbyJaron
         }
         public void removemethod_methodreturnstruewhenitemisremoved()
         {
-
-
+            //arrange
+            CustomList<string> mylist = new CustomList<string>();
+            //Act
+            return mylist.Remove(Items);
+            //Assert
+            Assert.AreEqual(1, mylist.Items);
         }
+
     }
 }
