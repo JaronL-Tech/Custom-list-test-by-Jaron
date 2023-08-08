@@ -93,6 +93,11 @@ namespace CustomList
             throw new NotImplementedException();
         }
 
+        public void Add(object items)
+        {
+            throw new NotImplementedException();
+        }
+
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
