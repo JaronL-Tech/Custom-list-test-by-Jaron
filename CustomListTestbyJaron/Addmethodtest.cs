@@ -5,60 +5,126 @@ using System.Security.Cryptography.X509Certificates;
 namespace CustomListTestbyJaron
 {
     [TestClass]
-    public class Addmethodtest
+    public class AddMethodTests
     {
         [TestMethod]
-        public void addMethod_AddTwoItems_SecondItemAtIndexOne()
+        public void AddMethod_AddMethodInt1ToCustomList_CountIncrementsBy1()
         {
-            //arrange
-            CustomList<string> mylist = new CustomList<string>();
+            //Arrange
+            CustomList<int> customlist1 = new CustomList<int>();
+
+
 
             //Act
-            mylist.Add("hello");
-            mylist.Add("world");
-            
-            
-            //Assert
-           
-            Assert.AreEqual("world" , mylist[1]);
-            
-        }
-        public void addMethod_Countincrements_addedItem()
-        {
-            //arrange
-            CustomList<int> mylist = new CustomList<int>();
-            //Act
-            mylist.Add(mylist.Count);
-            //Assert
-            Assert.AreEqual(1, mylist.Count);
-        }
-        public void addmethod_item_atindex() 
-        {
-            //arrange
-            CustomList<string> mylist = new CustomList<string>();
-            //Act
-            mylist.Add("hello");
+            customlist1.Add(1);
+
 
             //Assert
-            Assert.AreEqual("hello", mylist[0]);   
-        } 
-        public void addmethod_increasecapacity_wheneceeed()
-        {
-            //arrange
-            CustomList<int> mylist = new CustomList<int>();
-            //Act
-            mylist.Add(mylist.Capacity);
-            //Assert
-            Assert.AreEqual(4, mylist.Capacity);
+            Assert.AreEqual(1, customlist1.Count);
         }
-        public void addmethod_Capacityincreases_whileoriginalitemspersist_insameindex()
+        [TestMethod]
+        public void AddMethod_AddMethodStrEAndStrAPPleToCustomList_CountIncrementsBy2()
         {
-            //arrange
-            CustomList<string> mylist = new CustomList<string>();
+            //Arrange
+            CustomList<string> customlist1 = new CustomList<string>();
+
+
+
             //Act
-            mylist.Add(mylist.Items);
+            customlist1.Add("E");
+            customlist1.Add("Apple");
+
+
             //Assert
-            Assert.AreEqual(4, mylist.Items);
+            Assert.AreEqual(2, customlist1.Count);
+        }
+        [TestMethod]
+        public void AddMethod_AddMethod1And5And7_1IsAtIndex0()
+        {
+            //Arrange
+            CustomList<int> customlist1 = new CustomList<int>();
+
+
+
+            //Act
+            customlist1.Add(1);
+            customlist1.Add(5);
+            customlist1.Add(7);
+
+
+            //Assert
+            Assert.AreEqual(1, customlist1.Items[0]);
+        }
+        [TestMethod]
+        public void AddMethod_AddMethod1And5And7_5IsAtIndex1()
+        {
+            //Arrange
+            CustomList<int> customlist1 = new CustomList<int>();
+
+
+
+            //Act
+            customlist1.Add(1);
+            customlist1.Add(5);
+            customlist1.Add(7);
+
+
+            //Assert
+            Assert.AreEqual(5, customlist1.Items[1]);
+        }
+        [TestMethod]
+        public void AddMethod_AddMethodStrEAndStrAPPleToCustomList_AppleIsAtIndex1()
+        {
+            //Arrange
+            CustomList<string> customlist1 = new CustomList<string>();
+
+
+
+            //Act
+            customlist1.Add("E");
+            customlist1.Add("Apple");
+
+
+            //Assert
+            Assert.AreEqual("Apple", customlist1.Items[1]);
+        }
+        [TestMethod]
+        public void AddMethod_AddMethod1And5And7And6And12_CapacityDoubles()
+        {
+            //Arrange
+            CustomList<int> customlist1 = new CustomList<int>();
+
+
+
+            //Act
+            customlist1.Add(1);
+            customlist1.Add(5);
+            customlist1.Add(7);
+            customlist1.Add(6);
+            customlist1.Add(12);
+
+
+            //Assert
+            Assert.AreEqual(8, customlist1.Capacity);
+        }
+        [TestMethod]
+        public void AddMethod_AddMethod1And5And7And6And12_7IsAtIndex2()
+        {
+            //Arrange
+            CustomList<int> customlist1 = new CustomList<int>();
+
+
+
+            //Act
+            customlist1.Add(1);
+            customlist1.Add(5);
+            customlist1.Add(7);
+            customlist1.Add(6);
+            customlist1.Add(12);
+
+
+            //Assert
+            Assert.AreEqual(7, customlist1.Items[2]);
         }
     }
 }

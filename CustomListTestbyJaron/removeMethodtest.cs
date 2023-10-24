@@ -4,58 +4,150 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace CustomListTestbyJaron
 {
-    public class removeMethodtest
+    [TestClass]
+    public class RemoveMethodTests
     {
         [TestMethod]
-        public void removemethod_countdecreaseswhenanitem_isremoved()
+        public void RemoveMethod_RemoveOnlyItemInList_CountEquals0()
         {
-            //arrange
-            CustomList<int> mylist = new CustomList<int>();
-            mylist.Add(2);
-            mylist.Add(4);
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("e");
+
             //Act
-            mylist.Remove(2);
+            customList1.Remove("e");
+
             //Assert
-            Assert.AreEqual(1, mylist.Count);
+            Assert.AreEqual(0, customList1.Count);
         }
-        public void removemethod_methodreturnstruewhenitemisremoved()
+        [TestMethod]
+        public void RemoveMethod_RemoveOneOutOfTwoItemInList_CountEquals1()
         {
-            //arrange
-            CustomList<string> mylist = new CustomList<string>();
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("e");
+            customList1.Add("greg");
+
             //Act
-            return mylist.Remove(Items);
+            customList1.Remove("e");
+
             //Assert
-            Assert.AreEqual(1, mylist.Items);
+            Assert.AreEqual(1, customList1.Count);
         }
-        public void removemethod_countdecrement_removeanitemnot_customlist()
+        [TestMethod]
+        public void RemoveMethod_RemoveOneOutOfTwoItemInList_ReturnsTrue()
         {
-            //arrange
-            CustomList<int> mylist = new CustomList<int>();
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("e");
+            customList1.Add("F");
+
             //Act
-            mylist.Remove(1);
+            bool Return = customList1.Remove("e");
+
             //Assert
-            Assert.AreEqual(4, mylist.Items);
+            Assert.AreEqual(true, Return);
         }
-        public void removemethod_itemshiftsbackwards_filltheindexwithremoveditem()
+        [TestMethod]
+        public void RemoveMethod_RemoveOneOutOfTwoItemInList_CountEquals2()
         {
-            //arrange
-            CustomList<int> mylist = new CustomList<int>();
-            mylist.Add(2);
-            mylist.Add(items);
-            //act
-            mylist.Remove(item);
-            //assert
-            Assert.AreEqual(1,mylist.Items);
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("e");
+            customList1.Add("greg");
+
+            //Act
+            customList1.Remove("Apple");
+
+            //Assert
+            Assert.AreEqual(2, customList1.Count);
         }
-        public void removingmetod_removeanitemthatexist_multipleinstances()
+        [TestMethod]
+        public void RemoveMethod_RemoveOneOutOfTwoItemInList_Index0EqualsF()
         {
-            //arrange
-            CustomList<int> mylist = new CustomList<int>();
-            //act
-            mylist.Remove(2);
-            //assert
-            Assert.AreEqual(2, mylist.Count);
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("e");
+            customList1.Add("F");
+
+            //Act
+            customList1.Remove("e");
+
+            //Assert
+            Assert.AreEqual("F", customList1.Items[0]);
+        }
+        [TestMethod]
+        public void RemoveMethod_RemoveEWhenEAppearsMultipleTimes_CountOnlyDecrementsBy1()
+        {
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("E");
+            customList1.Add("F");
+            customList1.Add("E");
+            customList1.Add("E");
+            customList1.Add("E");
+
+
+            //Act
+            customList1.Remove("E");
+
+            //Assert
+            Assert.AreEqual(4, customList1.Count);
+        }
+        [TestMethod]
+        public void RemoveMethod_RemoveEWhenEAppearsMultipleTimes_Index0EqualsF()
+        {
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("E");
+            customList1.Add("F");
+            customList1.Add("E");
+            customList1.Add("E");
+            customList1.Add("E");
+
+
+            //Act
+            customList1.Remove("E");
+
+            //Assert
+            Assert.AreEqual("F", customList1.Items[0]);
+        }
+        [TestMethod]
+        public void RemoveMethod_RemoveEWhenEAppearsMultipleTimes_Index1EqualsE()
+        {
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("E");
+            customList1.Add("F");
+            customList1.Add("E");
+            customList1.Add("E");
+            customList1.Add("E");
+
+
+            //Act
+            customList1.Remove("E");
+
+            //Assert
+            Assert.AreEqual("E", customList1.Items[1]);
+        }
+        [TestMethod]
+        public void RemoveMethod_RemoveEWhenEAppearsMultipleTimes_SecondRemoveEReturnsTrue()
+        {
+            //Arrange
+            CustomList<string> customList1 = new CustomList<string>();
+            customList1.Add("E");
+            customList1.Add("F");
+            customList1.Add("E");
+            customList1.Add("E");
+            customList1.Add("E");
+
+
+            //Act
+            customList1.Remove("E");
+            bool tf = customList1.Remove("E");
+
+            //Assert
+            Assert.AreEqual(true, tf);
         }
     }
-            
 }

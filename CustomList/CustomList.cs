@@ -69,6 +69,19 @@ namespace CustomList
         //Member Methods (CAN DO)
         public void Add(T item)
         {
+            if (Capacity == Count)
+            {
+                capacity = capacity * 2;
+                T[] TempArray = new T[capacity];
+                for (int i = 0; i < count; i++)
+                {
+                    TempArray[i] = items[i];
+                
+                }
+                items = TempArray;
+            }
+            items[count] = item;
+            count++;
             //'item' parameter should be added to internal 'items' array
             //if items array is at capacity, double capacity and create new array
             //transfer all items to new array
@@ -76,12 +89,45 @@ namespace CustomList
 
         public bool Remove(T item)
         {
+            int X = Count;
+            for (int i = 0; i < Items.Length; i++)
+            {
+                if (item.Equals(Items[i]))
+                {
+                    int index = i;
+                    T[] temp = new T[Capacity];
+                    for (int o = 0; o < index; o++)
+                    {
+                        temp[o] = Items[o];
+
+
+                    }
+                    for (int o = index + 1; o < Items.Length; o++)
+                    {
+
+                        temp[o - 1] = Items[o];
+
+                    }
+
+                    Items = temp;
+                    count--;
+                    break;
+                }
+            }
+            if (X != Count)
+            {
+
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
             //If 'item' exists in the 'items' array, remove its first instance
             //Any items coming after the removed item should be shifted down so there is no empty index.
             //If 'item' was removed, return true. If no item was removed, return false.
-            return false;
         }
-
         public override string ToString()
         {
             //returns a single string that contains all items from array
